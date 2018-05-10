@@ -266,7 +266,8 @@ int ae::config::setup(const char *app_name, int argc, char *argv[])
   }
   options["name"] = app_name;
   options["server"] = "local";
-  options["playground"] = "testing",
+  //options["playground"] = "testing",
+  options["playground"] = "55inch",
   options["performance_tracking"] = "true";
 
   // nacitaj argumenty

@@ -85,7 +85,9 @@ struct sAgentInterface
 
   uint16_t value[4];
 
+  bool charge;//ak true zobrazi sa cesta od neho k stanici
 
+  
   operator bool() const { return id != 0; }
 
   /* Porovnávanie agentov na základe id. */

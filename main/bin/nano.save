@@ -1,0 +1,534 @@
+    1 ls
+    2 cd do
+    3 cd D
+    4 cd Downloads/
+    5 ls
+    6 sudo dpkg -i atom-amd64.deb
+    7 ls
+    8 cd ..
+    9 exit
+   10 ls
+   11 cd Do
+   12 cd Downloads/
+   13 ls
+   14 cd..
+   15 cd ..
+   16 mv Downloads/aeris_new-master.zip .
+   17 ls
+   18 unzip aeris_new-master.zip
+   19 ls
+   20 cd aeris_new-master/main/bin
+   21 ls
+   22 ./build
+   23 sudo apt install synaptic
+   24 apt-cache synaptic
+   25 sudo apt-get install synaptic
+   26 sudo apt-get update
+   27 sudo apt install synaptic
+   28 sudo synaptic
+   29 cd
+   30 ls
+   31 rm -r aeris_new-master
+   32 rm aeris_new-master.zip
+   33 sudo synaptic
+   34 ls
+   35 cd aeris_new/main/bin/
+   36 cd
+   37 cat >> cparted
+   38 ls
+   39 rm cparted
+   40 cat >> poyn
+   41 mv poyn pozn.txt
+   42 ls
+   43 apt-cache search gpart
+   44 ./runtracking
+   45 ls
+   46 ls ..
+   47 exit
+   48 cd aeris_new-master/main/bin/
+   49 ./build
+   50 ls -l
+   51 cd
+   52 ls
+   53 git clone https://github.com/lukascechovic/aeris_new.git
+   54 ls
+   55 cd aeris_new/main/bin/
+   56 ls
+   57 ls -l
+   58 ./build
+   59 sudo ./build
+   60 ./build
+   61 ls
+   62 synaptic -h
+   63 dpkg ?
+   64 ls
+   65 cd ..
+   66 ls
+   67 ls src/
+   68 ls -l
+   69 ls
+   70 cd
+   71 git clone https://github.com/opencv/opencv_contrib.git
+   72 ls
+   73 git clone https://github.com/opencv/opencv.git
+   74 ls
+   75 ls opencv
+   76 sudo apt-get update
+   77 sudo apt-get upgrade
+   78 sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev 
+libtiff5-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy 
+python-tk libtbb-dev libeigen3-dev yasm libfaac-dev 
+libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev 
+libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common 
+texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev 
+libavformat-dev libswscale-dev default-jdk ant libvtk5-qt4-dev
+   79 cd ~
+   80 ls
+   81 ls opencv
+   82 ls
+   83 cd opencv
+   84 ls
+   85 mkdir build
+   86 ls
+   87 cd build/
+   88 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE -DOPENCV_EXTRA_MODULES_PATH=../opencv 
+../../opencv_contrib/modules
+   89 cd
+   90 mkdir build_opencv
+   91 cd build_opencv/
+   92 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE -DOPENCV_EXTRA_MODULES_PATH=../opencv 
+../opencv_contrib/modules
+   93 ls ../opencv_contrib/
+   94 ls ../opencv_contrib/modules/
+   95 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE -DOPENCV_EXTRA_MODULES_PATH=../opencv 
+../opencv_contrib/modules
+   96 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE -DOPENCV_EXTRA_MODULES_PATH=../opencv 
+../opencv_contrib/modules ..
+   97 ls opencv
+   98 ls ../opencv
+   99 ls ../opencv_contrib/
+  100 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE -DOPENCV_EXTRA_MODULES_PATH=../opencv 
+../opencv_contrib/modules ../opencv
+  101 make -j5
+  102 ls
+  103 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE -DOPENCV_EXTRA_MODULES_PATH=../opencv 
+../opencv_contrib/modules ../opencv
+  104 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE 
+-DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ../opencv
+  105 make -j5
+  106 ls
+  107 sudo make install
+  108 cd..
+  109 cd ..
+  110 ls
+  111 cd aeris_new/
+  112 ls
+  113 cd main/bin/
+  114 ls
+  115 ./runtouch
+  116 exit
+  117 ls
+  118 chmod 700 robot-tracking.elf
+  119 ls
+  120 ./ robot-tracking.elf
+  121 ./robot-tracking.elf
+  122 cd aeris_new/main/bin/
+  123 ls
+  124 cd ..
+  125 ls
+  126 cd bin/
+  127 ls
+  128 ./clean
+  129 ./build
+  130 ls
+  131 ./train_svm.sh
+  132 ls
+  133 ./clean --force
+  134 ./build
+  135 ls
+  136 ./runtouch
+  137 cd
+  138 ls
+  139 cd build_opencv/
+  140 ls
+  141 sudo make install
+  142 cat build
+  143 cd ..
+  144 ls
+  145 ls src/
+  146 ls src/plugins/
+  147 ls
+  148 ls data/
+  149 cd bin/
+  150 ls
+  151 ./runtouch
+  152 sudo synaptic
+  153 cd
+  154 ls
+  155 git clone https://github.com/lukascechovic/aeris_new.git
+  156 ls
+  157 git clone https://github.com/lukascechovic/aeris_new.git
+  158 ls
+  159 ls aeris_new/
+  160 ls
+  161 ls aeris_new/
+  162 sudo su
+  163 cd
+  164 ls
+  165 ls -l
+  166 aeris_new/
+  167 cd aeris_new/main/bin/
+  168 ls
+  169 ./clean
+  170 ls
+  171 sudo ./build
+  172 ls
+  173 ./clean
+  174 ls
+  175 ls -l
+  176 sudo synaptic
+  177 ls
+  178 rm ninja
+  179 ls
+  180 ./build
+  181 ls -l
+  182 sudo ./build
+  183 cd ..
+  184 ls
+  185 ls src/
+  186 cd bin/
+  187 ./clean --force
+  188 cd
+  189 chmod 700 aeris_new/
+  190 ls
+  191 ls -l
+  192 ls -l aeris_new/
+  193 cd aeris_new/main/src/
+  194 ls
+  195 ls -l
+  196 ls
+  197 cd ..
+  198 ls
+  199 ls -l
+  200 cd
+  201 sudo synaptic
+  202 cd aeris_new/main/bin/
+  203 ./build
+  204 ls
+  205 cd
+  206 ls
+  207 git clone https://github.com/lukascechovic/aeris_new.git
+  208 cd aeris_new/main/
+  209 ls -l
+  210 cd bin/
+  211 ./build
+  212 ls
+  213 ./build
+  214 ./clean --force
+  215 sudo /build
+  216 sudo ./build
+  217 ./clean
+  218 ls
+  219 cd ..
+  220 ls
+  221 cd ..
+  222 cd main/build/
+  223 ls
+  224 cd src/
+  225 ls
+  226 ls server/
+  227 ls server/server@exe/
+  228 ls plugins/
+  229 ls plugins/pheromone/
+  230 ls plugins/pheromone/pheromone@sha/
+  231 cd
+  232 cd aeris_new/
+  233 find *.o
+  234 find *plug*
+  235 man find
+  236 cd main/bi
+  237 cd main/bin/
+  238 ./clean
+  239 ./build
+  240 ls aeris_new/
+  241 sudo su
+  242 ls
+  243 rm -r aeris_new/
+  244 git clone https://github.com/lukascechovic/aeris_new.git
+  245 ls
+  246 rm -r aeris_new
+  247 ls
+  248 git clone https://github.com/lukascechovic/aeris_new.git
+  249 cd aeris_new/main/bin/
+  250 ls
+  251 sudo su
+  252 ls
+  253 ./runtouch
+  254 ./robot-tracking.elf
+  255 cd
+  256 ls
+  257 cd build_opencv/
+  258 ls
+  259 sudo apt-get update
+  260 sudo apt-get upgrade
+  261 ./robot-tracking.elf
+  262 cd ..
+  263 ls
+  264 cat editorconfig
+  265 cd config/
+  266 ls
+  267 cat config.json
+  268 atom config.json
+  269 ls
+  270 atom runtouch
+  271 ls
+  272 cd ..
+  273 ls
+  274 cd src/
+  275 ls
+  276 ls plugins/
+  277 ls
+  278 cd plugins/
+  279 ls
+  280 ls example/
+  281 atom example/example_agent.cpp
+  282 cd ..
+  283 atom src
+  284 cd build_opencv/
+  285 ls
+  286 cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON 
+-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D 
+BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_VTK=ON .. 
+-DCMAKE_BUILD_TYPE=RELEASE 
+-DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ../opencv
+  287 make
+  288 sudo make install
+  289 cd ..
+  290 ls
+  291 cd aeris_new/main/bin/
+  292 ls
+  293 ./clean
+  294 sudo ./clean
+  295 ./build
+  296 sudo ./build
+  297 ls
+  298 ./runtouch
+  299 ls
+  300 ./robot-tracking.elf
+  301 ./robot-tracking.elf
+  302 ls
+  303 ./runline
+  304 nautilus
+  305 sudo os-prober
+  306 sudo update-grub
+  307 nautilus
+  308 sudo os-prober
+  309 nano /etc/default/rcS
+  310 nano /etc/default/rcS
+  311 sudo nano /etc/default/rcS
+  312 timedatectl set-local-rtc 1
+  313 exit
+  314 ls
+  315 atom
+  316 nano /etc/default/rcS
+  317 cd aeris_new/main/bin/
+  318 cd src/
+  319 ls
+  320 cd ..
+  321 ls
+  322 ls lib/
+  323 ls config/
+  324 more config/config.json
+  325 man historz
+  326 man history
+  327 history
+  328 cd .
+  329 cd
+  330 history > zaznamPrikazov
+  331 more zaznamPrikazov
+  332 ls
+  333 atom aeris_new/
+  334 ls
+  335 cd blender-2.79-linux-glibc219-x86_64/
+  336 ls
+  337 blender
+  338 sudo apt install blender
+  339 ls
+  340 cd .
+  341 ls
+  342 cd
+  343 ls
+  344 rm -r blender-2.79-linux-glibc219-x86_64/
+  345 ls
+  346 cd do
+  347 cd Do
+  348 ls
+  349 cd Downloads/
+  350 ls
+  351 cd ..
+  352 ls
+  353 ls blender-2.79-linux-glibc219-x86_64.tar-1
+  354 rm -r blender-2.79-linux-glibc219-x86_64.tar-1
+  355 ls
+  356 rm -r blender-2.79-linux-glibc219-x86_64.tar-1
+  357 ls
+  358 mkdir blenderinst
+  359 ls
+  360 ls blenderinst/
+  361 rm blenderinst/blender-2.79-linux-glibc219-x86_64.tar-2
+  362 ls
+  363 cd blenderinst/blender-2.79-linux-glibc219-x86_64/
+  364 ls
+  365 ./ blender
+  366 ./blender
+  367 cd
+  368 ./blenderinst/blender-2.79-linux-glibc219-x86_64/blender 
+aeris_new/main/models/sphere.obj
+  369 cd aeris_new/main/
+  370 ls
+  371 cd bin/
+  372 ls
+  373 sudo ./build
+  374 ls
+  375 sudo ./clean
+  376 sudo ./build
+  377 ls
+  378 ping Brano-PC
+  379 hostname
+  380 ifconfig
+  381 host 192.168.1.13
+  382 host 13.1.168.192
+  383 nslookup 192.168.1.13
+  384 nbstat
+  385 cd aeris_new/main/bin/
+  386 sudo ./runvisualisation
+  387 cd aeris_new/
+  388 ls
+  389 cd main/
+  390 cd bin/
+  391 ls
+  392 sudo ./build
+  393 sudo ./runserver
+  394 ls
+  395 ls -l
+  396 chmod 775 runtest
+  397 ls
+  398 sudo ./runtest
+  399 sudo ./runvisualisation
+  400 ps
+  401 sudo ./runvisualisation
+  402 cd aeris_new/main/bin/
+  403 sudo ./build
+  404 sudo ./runserver
+  405 sudo ./build
+  406 sudo ./runserver
+  407 sudo ./build
+  408 sudo ./runserver
+  409 ps
+  410 sudo ./build
+  411 ps
+  412 sudo ./runserver
+  413 sudo ./build
+  414 sudo ./runserver
+  415 sudo ./build
+  416 sudo ./runtest
+  417 sudo ./build
+  418 sudo ./runtest
+  419 sudo ./build
+  420 sudo ./runtest
+  421 sudo ./build
+  422 sudo ./runtest
+  423 sudo ./build
+  424 sudo ./runtest
+  425 sudo ./build
+  426 sudo ./runtest
+  427 ls
+  428 cd aeris_new/
+  429 ls
+  430 cd ma
+  431 cd main/
+  432 ls
+  433 cd bin/
+  434 ls
+  435 cat server.elf
+  436 ls
+  437 cat runserver
+  438 ls
+  439 cd aeris_new/main/bin/
+  440 ls
+  441 sudo ./runtest
+  442 ls
+  443 cat runline
+  444 ls
+  445 cat run-line
+  446 s
+  447 ls
+  448 cat run-ba-demo
+  449 ls
+  450 cat runtest
+  451 ls
+  452 sudo ./runtest
+  453 cat runtest
+  454 ls
+  455 cat runtest
+  456 ls
+  457 cat runserver
+  458 cat runtouch
+  459 sudo ./runtouch
+  460 cat runtouch
+  461 sudo ./runtouch
+  462 ls
+  463 cd aeris_new/main/bin/
+  464 ls
+  465 sudo ./build
+  466 cat runtest
+  467 sudo ./runtest
+  468 history | grep "aeris"
+  469 cd aeris_new/main/bin
+  470 ls
+  471 sudo ./build
+  472 sudo ./runtest
+  473 ls
+  474 sudo ./runtracking
+  475 cat runtracking
+  476 sudo ./runtracking
+  477 ls
+  478 cat runserver
+  479 sudo ./runserver
+  480 ls
+  481 cat runtest
+  482 ls
+  483 cat runline
+  484 ls
+  485 sudo ./runline
+  486 cat runvisualisation
+  487 ls
+  488 history | grep "runvisualization"
+  489 history | grep "runvisualisation"
+  490 history | more
+  491 ls
+  492 cat robot-tracking.elf
+  493 ls
+  494 ./robot-tracking.elf
+  495 history | nano

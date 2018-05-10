@@ -66,6 +66,15 @@ class VisualisationAgent : public ae::Agent
     /** \brief Vertices of border. */
     std::vector<ae::Point3D> m_border;
 
+    //bchily
+    /** \brief Vertices of line to charging station*/
+    std::vector<ae::Point3D> m_draha;
+    std::vector<ae::Point3D> charging_positions;
+    float charging_line_width;
+    float charging_line_from_border;
+    float charging_line_final_line_length;
+    float charging_line_end_position_from_border;
+
   public:
     VisualisationAgent(const nlohmann::json &parameters);
     ~VisualisationAgent();
@@ -97,9 +106,12 @@ class VisualisationAgent : public ae::Agent
 
     void make_grid(); /* TODO */
     void make_border(const float width);
-
+    //bchily
+    void cs_draw_line();
+    //void cs_make_line(int x, int y, int st);
     public:
-
+      void cs_make_line(int x, int y, int st);
+      void cs_make_line_static(int st);
       void rendering();
       void mouse_motion_handler(int x, int y);
       void touch_motion_handler(int x, int y);

@@ -69,7 +69,9 @@ VisualisationAgent::VisualisationAgent(const nlohmann::json &parameters) :
   m_cm_size(0),
 
   m_grid(),
-  m_border()
+  m_border(),
+  //chilyb
+  m_draha()
 {
   //backdoor alebo prasacke zviditelnenie
   if (g_visualisation_agent_instance == nullptr) g_visualisation_agent_instance = this;
@@ -141,6 +143,45 @@ VisualisationAgent::VisualisationAgent(const nlohmann::json &parameters) :
                    << ". Got: " << parameters[name];
       }
     }
+
+    //moje charging positions
+    std::string name1 = "charging_position1x";
+    std::string name2 = "charging_position1y";
+    if(parameters.find(name1) != parameters.end() && parameters.find(name2) != parameters.end())
+    {
+      if(parameters[name1].is_number() && parameters[name2].is_number())
+      {
+        charging_positions.emplace_back(parameters[name1],parameters[name2],0);
+      }
+    }
+    /*from_border":5.0,
+            "charging_line_width":1.5*/
+            name1= "from_border";
+    if(parameters.find(name1) != parameters.end()){
+      if(parameters[name1].is_number_float()){
+        charging_line_from_border = parameters[name1];
+      }
+    }
+     name1= "charging_line_width";
+    if(parameters.find(name1) != parameters.end()){
+      if(parameters[name1].is_number_float()){
+        charging_line_width = parameters[name1];
+      }
+    }
+      name1= "charging_line_final_line_length";
+    if(parameters.find(name1) != parameters.end()){
+      if(parameters[name1].is_number_float()){
+        charging_line_final_line_length = parameters[name1];
+      }
+    }
+      name1= "charging_line_end_position_from_border";
+    if(parameters.find(name1) != parameters.end()){
+      if(parameters[name1].is_number_float()){
+        charging_line_end_position_from_border = parameters[name1];
+      }
+    }
+
+    //cs_make_line(0,0,1);
   }
 
 
@@ -179,11 +220,43 @@ VisualisationAgent::~VisualisationAgent()
 void VisualisationAgent::process(Environment &env)
 {
   agent_buffer_t new_data = agent_buffer_t(new std::vector<sAgentInterface>(env.global_state()));
+//->
+  const uint16_t target_type_ChargingAgent = ae::config::get["agent_list"]["ChargingAgent"]["interface_type"];
+  const auto &agent_list = env.global_state();
+  uint16_t linemod;
+  ae::sAgentPosition robotPosition;
 
+  for (const ae::sAgentInterface &agent : agent_list)
+  {
+    if (agent.type == target_type_ChargingAgent)
+    {
+      linemod = agent.value[0];
+      robotPosition = agent.position;
+    }
+  }
+//<-
   m_lock_buffer.lock();
   m_buffer = new_data;
+  //->
+  if(linemod == 1 && m_draha.empty()){
+    cs_make_line(robotPosition.x,robotPosition.y,1);
+    LOG(INFO)<< "vysualisation draha dynamic";
+  }else if(linemod == 2 && m_draha.empty()){
+    cs_make_line_static(1);
+    LOG(INFO)<< "vysualisation draha static";
+  }else if(linemod == 0 && !m_draha.empty()){
+    m_draha.clear();
+    //cs_make_line_static(1);
+    //cs_make_line(0,0,1);
+    LOG(INFO)<< "visualisation draha clear";
+  }
+  //cs_make_line_static(1);
+  //cs_make_line(0,0,1);
+  //<-
   m_lock_buffer.unlock();
-
+  /*float lineWidth[2];
+  glGetFloatv(GL_LINE_WIDTH_RANGE, lineWidth);
+  LOG(INFO)<<"line width"<<lineWidth[0]<<" "<< lineWidth[1];*/
   m_interface.timestamp = time::timestamp();
   m_interface.expires = time::future_timestamp(time::seconds(10));
 }
@@ -310,6 +383,12 @@ void VisualisationAgent::draw_scene()
     glColor3f(1.0f, 1.0f, 1.0f);
     draw_triangles(m_border);
   }
+  //chilyb
+  if (!m_draha.empty())
+  {
+    cs_draw_line();
+  }//cs_draw_line();
+  
 
   glutSwapBuffers();
 }
@@ -398,7 +477,7 @@ void VisualisationAgent::make_grid()
   count_x /= 2;
   count_y /= 2;
 
-  std::vector<ae::Point3D> line;
+  std::vector<ae::Point3D> line;//void cs_make_line();
   for (float x = -count_x; x < count_x; x += 2)
   {
     line.push_back({x,        0.0f, 0.0f});
@@ -407,8 +486,8 @@ void VisualisationAgent::make_grid()
     line.push_back({x + 1.0f, 0.0f, 0.0f});
     line.push_back({x + 1.0f, 1.0f, 0.0f});
     line.push_back({x,        1.0f, 0.0f});
-  }
-
+  }//void cs_make_line();
+  
   m_grid = line;
 }
 
@@ -457,6 +536,128 @@ void VisualisationAgent::make_border(const float width)
   m_border.emplace_back(-wi, -hi, d);
   m_border.emplace_back(-w, -h, d);
 }
+
+//bchily
+void VisualisationAgent::cs_draw_line()
+{
+  //test vykreslenia čiary
+  glLineWidth(50.0);
+  glColor3f(1.0, 0.0, 0.0);
+  glBegin(GL_QUADS);
+  
+  for(const ae::Point3D &point : m_draha)
+  glVertex3f(point.x,point.y,point.z);
+  //glVertex3f(1, -1, 0);
+  glEnd();
+}
+
+//bchily
+void VisualisationAgent::cs_make_line(int x, int y, int st)
+{
+  m_draha.clear();
+
+  const float w = config::get["playground"]["size"][0].get<float>() / 2.0f;
+  //const float h = config::get["playground"]["size"][1].get<float>() / 2.0f;
+ //LOG(INFO) << " w " << w
+  //         << " h " << h;
+ const float fromb = charging_line_final_line_length;//from border
+  const float width = charging_line_width;
+  charging_positions[st-1].x = w;
+
+  m_draha.emplace_back(x,y,0);
+  m_draha.emplace_back(x,y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-charging_line_end_position_from_border-fromb,charging_positions[st-1].y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-charging_line_end_position_from_border-fromb,charging_positions[st-1].y,0);
+
+  m_draha.emplace_back(charging_positions[st-1].x-charging_line_end_position_from_border,charging_positions[st-1].y,0);
+  m_draha.emplace_back(charging_positions[st-1].x-charging_line_end_position_from_border,charging_positions[st-1].y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-charging_line_end_position_from_border-fromb,charging_positions[st-1].y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-charging_line_end_position_from_border-fromb,charging_positions[st-1].y,0);
+  //pozicia robota 
+  //robota ziskať z intx, inty
+  //na poziciu stanice
+  //stanica by mala byt v nastaveniach
+  //constexpr float d = 0.0f;
+}
+
+void VisualisationAgent::cs_make_line_static(int st){
+  m_draha.clear();
+  //nasleduj biely okraj pokym nenarazi na cervenu ciaru, nasledovat cervenu ciaru
+
+  const float w = config::get["playground"]["size"][0].get<float>() / 2.0f;
+  const float h = config::get["playground"]["size"][1].get<float>() / 2.0f;
+ 
+
+  const float fromb = charging_line_from_border;
+  const float width = charging_line_width;
+  const float posun = charging_line_end_position_from_border;
+  const float dlzka = charging_line_final_line_length;
+  const float medzera_medzi_drahami = width+4.0;
+  charging_positions[st-1].x = w;
+
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka-medzera_medzi_drahami,charging_positions[st-1].y-2,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka-medzera_medzi_drahami,h-fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka-medzera_medzi_drahami-width,h-fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka-medzera_medzi_drahami-width,charging_positions[st-1].y-2,0);
+
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka-medzera_medzi_drahami,h-fromb,0);
+  m_draha.emplace_back(-w+fromb,h-fromb,0);
+  m_draha.emplace_back(-w+fromb,h-fromb-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka-medzera_medzi_drahami,h-fromb-width,0);
+
+  m_draha.emplace_back(-w+fromb,h-fromb,0);
+  m_draha.emplace_back(-w+fromb,-h+fromb,0);
+  m_draha.emplace_back(-w+fromb+width,-h+fromb,0);
+  m_draha.emplace_back(-w+fromb+width,h-fromb,0);
+
+  m_draha.emplace_back(-w+fromb,-h+fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka,-h+fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka,-h+fromb+width,0);
+  m_draha.emplace_back(-w+fromb,-h+fromb+width,0);
+
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka,-h+fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun-dlzka,charging_positions[st-1].y,0);
+  m_draha.emplace_back(charging_positions[st-1].x-width-posun-dlzka,charging_positions[st-1].y,0);
+  m_draha.emplace_back(charging_positions[st-1].x-width-posun-dlzka,-h+fromb,0);
+
+  m_draha.emplace_back(charging_positions[st-1].x-dlzka-posun,charging_positions[st-1].y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun,charging_positions[st-1].y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun,charging_positions[st-1].y,0);
+  m_draha.emplace_back(charging_positions[st-1].x-dlzka-posun,charging_positions[st-1].y,0);
+
+  /*
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka-medzera_medzi_drahami,charging_positions[st-1].y+2,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka-medzera_medzi_drahami,h-fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka-medzera_medzi_drahami-width,h-fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka-medzera_medzi_drahami-width,charging_positions[st-1].y+2,0);
+
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka-medzera_medzi_drahami,h-fromb,0);
+  m_draha.emplace_back(-w+fromb,h-fromb,0);
+  m_draha.emplace_back(-w+fromb,h-fromb-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka-medzera_medzi_drahami,h-fromb-width,0);
+
+  m_draha.emplace_back(-w+fromb,h-fromb,0);
+  m_draha.emplace_back(-w+fromb,-h+fromb,0);
+  m_draha.emplace_back(-w+fromb+width,-h+fromb,0);
+  m_draha.emplace_back(-w+fromb+width,h-fromb,0);
+
+  m_draha.emplace_back(-w+fromb,-h+fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka,-h+fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka,-h+fromb+width,0);
+  m_draha.emplace_back(-w+fromb,-h+fromb+width,0);
+
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka,-h+fromb,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-posun-dlzka,charging_positions[st-1].y,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-width-posun-dlzka,charging_positions[st-1].y,0);
+  m_draha.emplace_back(charging_positions[st-1].x-fromb-width-posun-dlzka,-h+fromb,0);
+
+  m_draha.emplace_back(charging_positions[st-1].x-dlzka-posun,charging_positions[st-1].y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun,charging_positions[st-1].y-width,0);
+  m_draha.emplace_back(charging_positions[st-1].x-posun,charging_positions[st-1].y,0);
+  m_draha.emplace_back(charging_positions[st-1].x-dlzka-posun,charging_positions[st-1].y,0);
+*/
+}
+
 
 void VisualisationAgent::mouse_motion_handler(int x, int y)
 {

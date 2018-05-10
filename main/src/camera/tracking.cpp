@@ -269,7 +269,7 @@ void Tracking::setPerspTransform(const std::vector<cv::Point2f> &frame_corners)
   cv::Point2f real_size;
   real_size.x = ae::config::get["playground"]["size"][0];
   real_size.y = ae::config::get["playground"]["size"][1];
-
+LOG(INFO)<< "playground x:"<<real_size.x<<" y:"<<real_size.y;
   std::vector<cv::Point2f> real_corners;
   real_corners.emplace_back(-real_size.x / 2,  real_size.y / 2); // top left
   real_corners.emplace_back( real_size.x / 2,  real_size.y / 2); // top right

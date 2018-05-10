@@ -40,9 +40,10 @@
   {
     "debug": true,
     "framerate": 30,
-    "stream": 0,
+    "stream": 1,
     "stream_": "data/video/3robots_0.mkv",
-    "playground_corners": [[71, 13], [617, 28], [605, 338], [65, 312]],
+    "playground_corners_": [[71, 13], [617, 28], [605, 338], [65, 312]],
+    "playground_corners": [[620, 349],[45, 330],[55,9], [627, 24] ],
     "segmentation":
     {
       "robot_size": 30,
@@ -91,6 +92,10 @@
     "dell_touch":
     {
       "size": [52.7, 29.6]
+    },
+    "lenovo":
+    {
+      "size": [34.5, 19.5]
     }
   },
   "agent_list":
@@ -149,6 +154,37 @@
       "interface_type": 10,
       "body": "plane_1cm"
     }
+    ,
+    "teststvorec":
+    {
+      "interface_type": 11,
+      "body": "sphere_1cm"
+    }
+    ,
+    "StationAgent":
+    {
+      "interface_type": 12,
+      "body": "null"
+    }
+    ,
+    "ComAgent":
+    {
+      "interface_type": 13,
+      "body": "null"
+    }
+    ,
+    "MovementAgent":
+    {
+      "interface_type": 14,
+      "body": "null"
+    }
+    ,
+    "ChargingAgent":
+    {
+      "interface_type": 15,
+      "body": "null"
+    }
+
   },
   "body_list":
   {
@@ -336,6 +372,79 @@
             "color": [0.0, 0.0, 0.8]
           }
         }
+      ]
+    },
+    "teststvorec":
+    {
+      "dt": 100,
+      "njobs": 2,
+      "spawn":
+      [
+        {
+          "count": 1,
+          "plugin": "visualisation",
+          "params":
+          {
+            "fullscreen": true,
+            "draw_grid": true,
+            "resolution": [1366, 768],
+            "framerate": 30,
+            "border_width": 2.0
+          }
+        }
+        ,
+        {
+          "count": 1,
+          "plugin": "teststvorec",
+          "params":
+          {
+            "color": [0.0,1.0,0.0]
+          }
+        }
+      ]
+    }
+    ,
+    "chargingStation":
+    {
+      "dt": 100,
+      "njobs": 2,
+      "spawn":
+      [
+        {
+          "count": 1,
+          "plugin": "visualisation",
+          "params":
+          {
+            "fullscreen": true,
+            "draw_grid": true,
+            "resolution_": [1366, 768],
+            "resolution": [1920,1080],
+            "framerate": 30,
+            "border_width": 4.0,
+            "charging_position1x": 18,
+            "charging_position1y": 4,
+            "from_border":8.0,
+            "charging_line_width":2.0,
+            "charging_line_final_line_length":6.0,
+            "charging_line_end_position_from_border":4.0
+          }
+        }
+
+
+        ,
+        {
+          "count":1,
+          "plugin": "charging",
+          "params":
+          {
+            
+            "draha":0,
+            "debug":0,
+            "debugmov":0,
+            "limit":0.4
+          }
+        }
+
       ]
     }
   }
