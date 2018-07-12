@@ -23,6 +23,8 @@ check_alive
 #spawn agent-group $ARGS --name=visualisation --playground=55inch
 #sleep 1s
 spawn agent-group $ARGS --name=chargingStation --playground=55inch
+sleep 1s
+spawn agent-group $ARGS --name=line --playground=55inch
 #spawn camera
 stop
 

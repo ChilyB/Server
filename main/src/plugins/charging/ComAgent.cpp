@@ -25,6 +25,7 @@ ComAgent::~ComAgent(){
   
   run = false;
   close(server);
+  close(client);
 }
 
 mutex ComAgent::receiveMutex;

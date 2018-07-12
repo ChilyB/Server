@@ -123,7 +123,8 @@
     "real_robot_agent":
     {
       "interface_type": 5,
-      "body": "sphere_1cm"
+      "body#": "sphere_1cm",
+      "body": "null"
     },
     "follower":
     {
@@ -204,7 +205,7 @@
     {
       "interface_type": 2,
       "model": "models/sphere.obj",
-      "scale": 0.5
+      "scale": 1.0
     },
     "plane_1cm":
     {
@@ -343,8 +344,8 @@
             "type": "elipse",
             "agent_count": 600,
             "speed": 1.0,
-            "radius": 10,
-            "color": [1.0, 0.0, 0.0]
+            "radius": 20,
+            "color": [0.0, 0.3, 0.0]
           }
         },
         {
@@ -356,7 +357,7 @@
             "agent_count": 600,
             "speed": 2.0,
             "radius": 7,
-            "color": [0.0, 0.7, 0.0]
+            "color": [0.5, 1.0, 0.5]
           }
         }
         ,
@@ -437,7 +438,7 @@
           "plugin": "charging",
           "params":
           {
-            
+
             "draha":0,
             "debug":0,
             "debugmov":0,

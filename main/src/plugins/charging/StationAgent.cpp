@@ -37,6 +37,7 @@ StationAgent::StationAgent(const nlohmann::json &parameters) :
 StationAgent::~StationAgent(){
   run = false;
   close(server);
+  close(client);
 }
 mutex StationAgent::receiveMutex;
 bool StationAgent::run;
